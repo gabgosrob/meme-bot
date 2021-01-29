@@ -1,6 +1,7 @@
 import praw
 import time
 import os
+import random
 
 
 class Posts:
@@ -18,8 +19,21 @@ class Posts:
     ]
 
     def __init__(self):
-        self.img_posts = None
+        self.img_posts = {}
         self.last_updated = time.time()
+        self.update_posts()
+
+    
+    def get_meme_subs(self):
+        return self.MEME_SUBS
+    
+
+    def get_posts_dict(self):
+        return self.img_posts
+
+
+    def get_last_uptaded_time(self):
+        return self.last_updated
 
 
     def get_recent_posts(self, sub, num):
@@ -36,20 +50,18 @@ class Posts:
                 not x.stickied and not x.is_self and not x.media)]
         return posts
 
-    
-    def get_recent_subs_posts(self, num):
-        """Gets recent hot posts of meme subreddits
 
-        Args:
-            num (int): number of posts per sub
+    def get_random_sub(self):
+        return self.MEME_SUBS[random.randint(0, len(self.MEME_SUBS)-1)]
 
-        Returns:
-            list: all posts
-        """
-        posts = []
-        for sub in self.MEME_SUBS:
-            posts += self.get_recent_posts(sub, num)
-        return posts
+
+    def get_random_meme(self, sub):
+        meme_list = self.img_posts[sub]
+        return meme_list[random.randint(0, len(meme_list)-1)]
+
+
+    def get_random_meme_from_random_sub(self):
+        return self.get_random_meme(self.get_random_sub())
     
 
     def should_update(self):
@@ -59,7 +71,7 @@ class Posts:
             bool: y/n
         """
         update = False
-        if not self.img_posts or time.time() - self.last_updated > 1800:
+        if time.time() - self.last_updated > 1800:
             update = True
         return update
 
@@ -67,5 +79,6 @@ class Posts:
     def update_posts(self):
         """Updates the posts list
         """
-        self.img_posts = self.get_recent_subs_posts(100)
+        for sub in self.MEME_SUBS:
+            self.img_posts[sub] = self.get_recent_posts(sub, 100)
         self.last_updated = time.time()
