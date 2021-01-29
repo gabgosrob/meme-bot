@@ -35,6 +35,11 @@ def make_meme_embed(post):
 
 
 def make_help_message_embed():
+    """Makes a help message embed
+
+    Returns:
+        embed: help message embed
+    """
     to_send = discord.Embed(title="__List of commands__")
     to_send.add_field(name="**meme**",
                     value="posts a random meme from a random meme subreddit",

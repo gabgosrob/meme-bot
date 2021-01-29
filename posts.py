@@ -25,14 +25,29 @@ class Posts:
 
     
     def get_meme_subs(self):
+        """Gets the supported subreddits list
+
+        Returns:
+            list: supported subreddits
+        """
         return self.MEME_SUBS
     
 
     def get_posts_dict(self):
+        """Gets the latest posts dictionary
+
+        Returns:
+            dict: latest posts
+        """
         return self.img_posts
 
 
     def get_last_uptaded_time(self):
+        """Gets the last update time
+
+        Returns:
+            time: last update
+        """
         return self.last_updated
 
 
@@ -52,15 +67,33 @@ class Posts:
 
 
     def get_random_sub(self):
+        """Gets a random supported subreddit
+
+        Returns:
+            str: subreddit name
+        """
         return self.MEME_SUBS[random.randint(0, len(self.MEME_SUBS)-1)]
 
 
     def get_random_meme(self, sub):
+        """Gets a random meme from specified subreddit
+
+        Args:
+            sub (str): subreddit name
+
+        Returns:
+            post: submission
+        """
         meme_list = self.img_posts[sub]
         return meme_list[random.randint(0, len(meme_list)-1)]
 
 
     def get_random_meme_from_random_sub(self):
+        """Gets a random meme from a random subreddit
+
+        Returns:
+            post: submission
+        """
         return self.get_random_meme(self.get_random_sub())
     
 
