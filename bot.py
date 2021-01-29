@@ -1,4 +1,3 @@
-import random
 import os
 import discord
 from misc import *
