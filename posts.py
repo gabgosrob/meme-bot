@@ -16,6 +16,12 @@ class Posts:
         "memes",
         "dankmemes",
         "me_irl",
+        "cursedcomments",
+        "blackpeopletwitter",
+        "im14andthisisdeep",
+        "madlads",
+        "suicidebywords",
+        "prequelmemes"
     ]
 
     def __init__(self):
