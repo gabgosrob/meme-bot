@@ -59,6 +59,14 @@ def make_help_message_embed():
     return to_send
 
 
+def make_stats_embed():
+    to_send = discord.Embed(title="__Stats:__")
+    to_send.add_field(name="Uptime:",
+                    value=imgs.get_uptime(),
+                    inline=False)
+    return to_send
+
+
 @client.event
 async def on_ready():
     # Changes the bot status to "Watching memes"
@@ -86,8 +94,8 @@ async def on_message(message):
             # This displays the help message
             await message.channel.send(embed=make_help_message_embed())
         elif words[1] == "stats":
-            # This displays the bot's stats
-            await message.channel.send("**Not yet supported.**")
+            # This displays the bot stats
+            await message.channel.send(embed=make_stats_embed())
         elif words[1] == "subs":
             # This displays the supported meme subreddits
             subs_string = ""

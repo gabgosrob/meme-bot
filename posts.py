@@ -25,9 +25,51 @@ class Posts:
     ]
 
     def __init__(self):
+        self.INIT_TIME = time.time()
+        self.memes_served = 0
         self.img_posts = {}
         self.last_updated = time.time()
         self.update_posts()
+
+
+    def get_uptime(self):
+        """Gets the initialization time
+
+        Returns:
+            time: initialization time in seconds
+        """
+        total_seconds = int(time.time() - self.INIT_TIME)
+
+        days = total_seconds // 86400
+        total_seconds -= days * 86400
+        hours = total_seconds // 3600
+        total_seconds -= hours * 3600
+        minutes = total_seconds // 60
+        total_seconds -= minutes * 60
+        seconds = total_seconds
+
+        if not days and not hours and not minutes:
+            return f"{seconds} seconds"
+        elif not days and not hours:
+            return f"{minutes} minutes and {seconds} seconds"
+        elif not days:
+            return f"{hours} hours, {minutes} minutes and {seconds} seconds"
+        return f"{days} days, {hours} hours, {minutes} minutes and {seconds} seconds"
+
+
+    def get_memes_served(self):
+        """Gets the total amount of memes served since last restart
+
+        Returns:
+            int: memes served since last reset
+        """
+        return self.memes_served
+
+
+    def increment_memes_served(self):
+        """Increments the total amount of memes served since last restart
+        """
+        self.memes_served += 1
 
     
     def get_meme_subs(self):
