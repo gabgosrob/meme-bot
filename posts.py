@@ -18,7 +18,6 @@ class Posts:
         "me_irl",
         "cursedcomments",
         "blackpeopletwitter",
-        "im14andthisisdeep",
         "madlads",
         "suicidebywords",
         "prequelmemes"
