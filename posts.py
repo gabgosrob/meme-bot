@@ -133,6 +133,7 @@ class Posts:
             post: submission
         """
         meme_list = self.img_posts[sub]
+        self.increment_memes_served()
         return meme_list[random.randint(0, len(meme_list)-1)]
 
 

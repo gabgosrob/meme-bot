@@ -64,6 +64,9 @@ def make_stats_embed():
     to_send.add_field(name="Uptime:",
                     value=imgs.get_uptime(),
                     inline=False)
+    to_send.add_field(name="Memes served:",
+                    value=f"{imgs.get_memes_served()} memes",
+                    inline=False)
     return to_send
 
 
