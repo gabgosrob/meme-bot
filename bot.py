@@ -61,6 +61,8 @@ def make_help_message_embed():
 
 @client.event
 async def on_ready():
+    # Changes the bot status to "Watching memes"
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="memes"))
     print(f"Logged in as {client.user}")
 
 
