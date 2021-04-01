@@ -118,7 +118,6 @@ async def on_message(message):
             else:
                 await message.channel.send("**This subreddit is not supported. Type 'meme help' for more information.**")
 
-#TODO: 'meme stats' command (shows stats like uptime, total memes served)
 #TODO: add reactions to messages after bot recognizes them
 
 
