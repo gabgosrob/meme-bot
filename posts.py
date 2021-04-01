@@ -17,10 +17,8 @@ class Posts:
         "dankmemes",
         "me_irl",
         "cursedcomments",
-        "blackpeopletwitter",
         "madlads",
         "suicidebywords",
-        "prequelmemes"
     ]
 
     def __init__(self):
