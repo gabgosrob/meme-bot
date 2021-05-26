@@ -8,5 +8,5 @@ def random_color_int():
         int: color
     """
     r, g, b = random.randint(0, 255), random.randint(0, 255), random.randint(0, 255)
-    color = 65536*r + 256*g + b
+    color = 65536 * r + 256 * g + b
     return color

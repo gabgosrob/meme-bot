@@ -17,20 +17,23 @@ def make_meme_embed(post):
 
     Returns:
         embed: meme embed ready to send
-    """ 
+    """
     to_send = discord.Embed(
         title=post.title,
         url=f"https://www.reddit.com/r/{post.subreddit}/comments/{str(post)}",
         description=f"u/{str(post.author)}",
-        color=random_color_int())
+        color=random_color_int(),
+    )
     to_send.set_author(
         name=f"r/{str(post.subreddit)}",
         url=f"https://www.reddit.com/r/{post.subreddit}",
-        icon_url=post.subreddit.icon_img)
+        icon_url=post.subreddit.icon_img,
+    )
     to_send.set_image(url=post.url)
     to_send.set_footer(
         text="This bot was made by twig#1234",
-        icon_url="https://cdn.discordapp.com/avatars/178997121737949184/a_1625128860ca511929ac2f45395e1e46.webp?size=256")
+        icon_url="https://cdn.discordapp.com/avatars/178997121737949184/a_1625128860ca511929ac2f45395e1e46.webp?size=256",
+    )
     return to_send
 
 
@@ -41,39 +44,45 @@ def make_help_message_embed():
         embed: help message embed
     """
     to_send = discord.Embed(title="__List of commands__")
-    to_send.add_field(name="**meme**",
-                    value="posts a random meme from a random meme subreddit",
-                    inline=False)
-    to_send.add_field(name="**meme <subreddit>**",
-                    value="posts a random meme from the specified meme subreddit",
-                    inline=False)
-    to_send.add_field(name="**meme subs**",
-                    value="displays the list of all supported meme subreddits",
-                    inline=False)
-    to_send.add_field(name="**meme stats**",
-                    value="displays this bot's stats",
-                    inline=False)
-    to_send.add_field(name="**meme help**",
-                    value="displays this list of commands",
-                    inline=False)
+    to_send.add_field(
+        name="**meme**",
+        value="posts a random meme from a random meme subreddit",
+        inline=False,
+    )
+    to_send.add_field(
+        name="**meme <subreddit>**",
+        value="posts a random meme from the specified meme subreddit",
+        inline=False,
+    )
+    to_send.add_field(
+        name="**meme subs**",
+        value="displays the list of all supported meme subreddits",
+        inline=False,
+    )
+    to_send.add_field(
+        name="**meme stats**", value="displays this bot's stats", inline=False
+    )
+    to_send.add_field(
+        name="**meme help**", value="displays this list of commands", inline=False
+    )
     return to_send
 
 
 def make_stats_embed():
     to_send = discord.Embed(title="__Stats:__")
-    to_send.add_field(name="Uptime:",
-                    value=imgs.get_uptime(),
-                    inline=False)
-    to_send.add_field(name="Memes served:",
-                    value=f"{imgs.get_memes_served()} memes",
-                    inline=False)
+    to_send.add_field(name="Uptime:", value=imgs.get_uptime(), inline=False)
+    to_send.add_field(
+        name="Memes served:", value=f"{imgs.get_memes_served()} memes", inline=False
+    )
     return to_send
 
 
 @client.event
 async def on_ready():
     # Changes the bot status to "Watching memes"
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name="memes"))
+    await client.change_presence(
+        activity=discord.Activity(type=discord.ActivityType.watching, name="memes")
+    )
     print(f"Logged in as {client.user}")
 
 
@@ -90,7 +99,9 @@ async def on_message(message):
             await message.channel.send("**Updated!**")
 
         # This sends a random meme from a random meme subreddit
-        await message.channel.send(embed=make_meme_embed(imgs.get_random_meme_from_random_sub()))
+        await message.channel.send(
+            embed=make_meme_embed(imgs.get_random_meme_from_random_sub())
+        )
 
     elif len(words) == 2 and words[0] == "meme":
         if words[1] == "help":
@@ -105,8 +116,7 @@ async def on_message(message):
             for sub in sorted(imgs.get_meme_subs()):
                 subs_string += f"[r/{sub}](https://www.reddit.com/r/{sub})\n"
             to_send = discord.Embed()
-            to_send.add_field(name="__Supported Meme Subreddits__",
-                            value=subs_string)
+            to_send.add_field(name="__Supported Meme Subreddits__", value=subs_string)
             await message.channel.send(embed=to_send)
         else:
             # This sends a random meme from a specified meme subreddit
@@ -116,9 +126,12 @@ async def on_message(message):
                 post = imgs.get_random_meme(words[1])
                 await message.channel.send(embed=make_meme_embed(post))
             else:
-                await message.channel.send("**This subreddit is not supported. Type 'meme help' for more information.**")
+                await message.channel.send(
+                    "**This subreddit is not supported. Type 'meme help' for more information.**"
+                )
 
-#TODO: add reactions to messages after bot recognizes them
+
+# TODO: add reactions to messages after bot recognizes them
 
 
 client.run(os.environ.get("MEME_BOT_DISCORD_TOKEN"))
