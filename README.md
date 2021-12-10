@@ -4,13 +4,10 @@ This is a python discord bot that pulls random memes from various meme subreddit
 
 ## Requirements
 
-This bot has a few requirements, notably the [Discord API wrapper](https://github.com/Rapptz/discord.py) and the [Reddit API wrapper](https://github.com/praw-dev/praw).
+This bot has a few requirements, notably the [Discord API wrapper](https://github.com/Rapptz/discord.py) and the [Reddit API wrapper](https://github.com/praw-dev/praw), which are located in the requirements.txt file.
 
 ```bash
-pip install discord
-```
-```bash
-pip install praw
+pip install -r requirements.txt
 ```
 You're also going to need your own Discord bot token and your Reddit API id/secret/agent set as environment variables.
 
