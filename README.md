@@ -15,6 +15,6 @@ You're also going to need your own Discord bot token and your Reddit API id/secr
 
 After running the bot.py file, simply type 'meme help' in a text channel for all the commands.
 
-## Heroku
+## Deployment
 
-This repo contains a Procfile and a requirements.txt file, it is therefore ready for deployment on Heroku. Just don't forget to set the environment variables on your Heroku app as well.
+This repo contains a Procfile and a requirements.txt file, it is therefore ready for deployment. Just don't forget to set the environment variables on your virtual environment to use the correct API keys.
