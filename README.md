@@ -11,6 +11,10 @@ pip install -r requirements.txt
 ```
 You're also going to need your own Discord bot token and your Reddit API id/secret/agent set as environment variables.
 
+To run the bot, simply execute the main file:
+```bash
+python bot.py
+```
 ## Usage
 
 After running the bot.py file, simply type 'meme help' in a text channel for all the commands.
